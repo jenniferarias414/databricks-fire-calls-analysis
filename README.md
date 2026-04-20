@@ -81,6 +81,31 @@ Saved transformed output as Parquet and read it back to simulate a simple pipeli
 
 ---
 
+## Data Pipeline Flow
+
+This project follows a typical Spark data pipeline pattern:
+
+1. Read raw CSV data from Databricks Volume  
+2. Inspect and clean data  
+3. Apply transformations and filtering  
+4. Aggregate data to answer business questions  
+5. Persist results as Parquet for reuse
+
+---
+
+## Example Transformation
+
+```python
+from pyspark.sql.functions import col, to_timestamp
+
+df = df.withColumn(
+    "call_timestamp",
+    to_timestamp(col("CallDate"), "MM/dd/yyyy")
+)
+```
+
+---
+
 ## What I Learned
 
 In this project, I learned how to use Databricks and PySpark to work with real-world CSV data, apply transformations, answer business questions with aggregations, and persist transformed data in Parquet format for reuse.
